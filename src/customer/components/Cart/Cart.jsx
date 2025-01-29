@@ -11,6 +11,8 @@ const Cart = () => {
   const cart = useSelector(store => store.cart);
   console.log("Cart Inside Cart : ",cart);
   const dispatch = useDispatch();
+
+  
   const handleCheckout = () => {
     navigate("/checkout?step=2")
   }

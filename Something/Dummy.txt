@@ -1,1 +1,134 @@
-I am a Dummy
+UPDATE_CART_ITEM_SUCCESS payload:  
+{data: {…}, message: 'Item quantity decreased successfully'}
+data
+: 
+cartItems
+: 
+Array(2)
+0
+: 
+brand
+: 
+"KSH Trendz"
+color
+: 
+"Yellow"
+discountPercentage
+: 
+82
+discountedPrice
+: 
+265
+id
+: 
+8
+imageUrl
+: 
+"https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/y/r/m/xxs-sada-plain-kurta-ksh-trendz-original-imag4baggdt7txju-bb.jpeg?q=70"
+price
+: 
+1499
+productId
+: 
+102
+quantity
+: 
+4
+size
+: 
+"S"
+title
+: 
+"Men Solid Cotton Blend Straight Kurta"
+[[Prototype]]
+: 
+Object
+1
+: 
+brand
+: 
+"WRODSS"
+color
+: 
+"Black"
+discountPercentage
+: 
+72
+discountedPrice
+: 
+277
+id
+: 
+13
+imageUrl
+: 
+"https://rukminim1.flixcart.com/image/612/612/kpodocw0/t-shirt/x/o/4/xl-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70"
+price
+: 
+999
+productId
+: 
+84
+quantity
+: 
+1
+size
+: 
+"S"
+title
+: 
+"Men Solid Cotton Blend Straight Kurta"
+[[Prototype]]
+: 
+Object
+length
+: 
+2
+[[Prototype]]
+: 
+Array(0)
+discount
+: 
+5658
+id
+: 
+5
+totalDiscountedPrice
+: 
+1337
+totalItems
+: 
+5
+totalPrice
+: 
+6995
+userId
+: 
+6
+[[Prototype]]
+: 
+Object
+message
+: 
+"Item quantity decreased successfully"
+[[Prototype]]
+: 
+Object
+
+
+
+
+
+//////////////////////////////////////////////////
+
+ITEM : Inside CartItem :  {id: 13, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'WRODSS', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/kpodo…-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70', color: 'Black', …}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 8, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'KSH Trendz', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/xif0q…ksh-trendz-original-imag4baggdt7txju-bb.jpeg?q=70', color: 'Yellow', …}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 8, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'KSH Trendz', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/xif0q…ksh-trendz-original-imag4baggdt7txju-bb.jpeg?q=70', color: 'Yellow', …}
+Reducer.js:71 REMOVE CART ITEM SUCCESS payload:  13
+Action.js:49 Item Removed Succesfully :  {data: {…}, message: 'Item removed from cart successfully'}
+Cart.jsx:12 Cart Inside Cart :  {cart: {…}, loading: false, error: null, cartItems: Array(0)}
+Cart.jsx:12 Cart Inside Cart :  {cart: {…}, loading: false, error: null, cartItems: Array(0)}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 13, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'WRODSS', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/kpodo…-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70', color: 'Black', …}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 13, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'WRODSS', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/kpodo…-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70', color: 'Black', …}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 8, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'KSH Trendz', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/xif0q…ksh-trendz-original-imag4baggdt7txju-bb.jpeg?q=70', color: 'Yellow', …}
+CartItem.jsx:10 ITEM : Inside CartItem :  {id: 8, title: 'Men Solid Cotton Blend Straight Kurta', brand: 'KSH Trendz', imageUrl: 'https://rukminim1.flixcart.com/image/612/612/xif0q…ksh-

@@ -25,10 +25,11 @@ import { Button } from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
 import { mens_kurta } from "../../../Data/mens_kurta";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { data, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById, findProductSById } from "../../../State/Product/Action";
 import { store } from "../../../State/store";
+import { addItemToCart } from "../../../State/Cart/Action";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -94,6 +95,15 @@ export default function ProductDetails() {
   console.log("Products INSIDE PRODUCT DETAILS-> ", products);
 
   const handleAddToCart = () => {
+    const data = {
+
+      productId: params.productId,
+      size: selectedSize.name,
+      quantity: 1,
+      price : products.product?.price,
+    }
+    dispatch(addItemToCart(data))
+    console.log("Add to Cart Clicked");
     navigate("/cart")
   }
 
@@ -153,8 +163,8 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                alt={product.product?.imageUrl}
-                src={product.images[0].src}
+                alt={products.product?.name}
+                src={products.product?.imageUrl}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -175,11 +185,11 @@ export default function ProductDetails() {
           <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24 text-left">
             <div className="lg:col-span-2 ">
               <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
-                UniversalOutFIt
+                {products.product?.brand}
               </h1>
               <h1 className="text-lg lg:text-xl text-gray-900 opacity-60 pt-1">
                 {" "}
-                Casual Puff Sleevs Solie Women top
+                {products.product?.title}
               </h1>
             </div>
 
@@ -187,9 +197,9 @@ export default function ProductDetails() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                <p className="font-semibold">₹199</p>
-                <p className="line-through opacity-50">₹211</p>
-                <p className="text-green-600 font-semibold">5 % off</p>
+                <p className="font-semibold">{products.product?.discountedPrice}</p>
+                <p className="line-through opacity-50">{products.product?.price}</p>
+                <p className="text-green-600 font-semibold">{products.product?.discountPercentage} % off</p>
               </div>
 
               {/* Reviews */}

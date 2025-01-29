@@ -45,7 +45,7 @@ export const removeCartItem = (reqData) => async (dispatch) => {
 
   try {
     const { data } = await api.delete(`/api/cart/remove/${reqData.cartItemId}`);
-    dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: reqData.cartItemId });
+    dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: data });
     console.log("Item Removed Succesfully : ",data)
   } catch (error) {
     dispatch({ type: REMOVE_CART_ITEM_FAILURE, payload: error.message });

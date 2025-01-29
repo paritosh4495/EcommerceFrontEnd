@@ -10,12 +10,10 @@ const CartItem = ({item}) => {
   console.log("ITEM : Inside CartItem : ",item)
   
   const dispatch = useDispatch();
-  const cartItems = useSelector((store) => store.cart)
-
 
     // Handler to remove item
     const handleRemoveItem = () => {
-      dispatch(removeCartItem({ cartItemId: item.id })); // 
+      dispatch(removeCartItem({ cartItemId: item?.id })); // 
     };
 
       // Handler to increase quantity
@@ -26,7 +24,7 @@ const CartItem = ({item}) => {
   // Handler to decrease quantity
   const handleDecreaseQuantity = () => {
     if (item.quantity > 1) {
-      dispatch(updateCartItem({ cartItemId: item.id }));
+      dispatch(updateCartItem({ cartItemId: item?.id }));
     } else {
       handleRemoveItem(); // Remove item if quantity is 1
     }

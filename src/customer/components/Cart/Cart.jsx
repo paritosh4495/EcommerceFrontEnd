@@ -12,7 +12,7 @@ const Cart = () => {
   console.log("Cart Inside Cart : ",cart);
   const dispatch = useDispatch();
 
-  
+
   const handleCheckout = () => {
     navigate("/checkout?step=2")
   }
@@ -23,19 +23,21 @@ const Cart = () => {
 
 
   // Destructure cart data with default values
-  const { totalPrice, discount, totalDiscountedPrice } = cart.cart?.data || {
+  const { totalPrice, discount, totalDiscountedPrice, cartItems } = cart.cart?.data || {
     totalPrice: 0,
     discount: 0,
     totalDiscountedPrice: 0,
+    cartItems: [],
   };
+  
     
 
   return (
     <div>
       <div className="lg:grid grid-cols-3 lg:px-16 relative">
         <div className="col-span-2">
-        {cart.cart?.data?.cartItems?.map((item, index) => (
-            <CartItem key={index} item={item} />
+        {cart.cart?.data?.cartItems?.map((item) => (
+              <CartItem key={`${item.productId}-${item.size}`} item={item} />
           ))}
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">

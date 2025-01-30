@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AddressCard from '../AddressCard/AddressCard'
 import { Button, Divider } from '@mui/material'
 import CartItem from '../Cart/CartItem'
+import { useDispatch, useSelector } from 'react-redux'
+import { getOrderById } from '../../../State/Order/Action'
+import { useLocation } from 'react-router-dom'
+import { store } from '../../../State/store'
+
+
 
 const OrderSummary = () => {
+
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const {order} = useSelector(store => store);
+  console.log("Order INSIDE ORDER SUMMARY : ",order);
+
+  const searchParams = new URLSearchParams(location.search);
+  const orderId = searchParams.get("order_id");
+  useEffect(()=>{
+    dispatch(getOrderById(orderId))
+  },[orderId])
+
+
   return (
     <div>
         <div className='p-5 shadow-lg rounded-s-md border'>
-            <AddressCard/>
+            <AddressCard address={order.order?.data?.address}/>
         </div>
         <div>
       <div className="lg:grid grid-cols-3 relative">
         <div className="col-span-2">
-          {[1,1,1,1].map((item)=> <CartItem />)}
+          {order.order?.data?.orderItems.map((item)=> <CartItem  item={item}/>)}
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
           <div className="border text-left items-center p-5 shadow-lg rounded-md">
@@ -22,13 +42,13 @@ const OrderSummary = () => {
             <div className="space-y-1 font-semibold mb-10 ">
                 <div className="flex justify-between pt-3 text-black text-left">
                     <span>Price</span>
-                    <span>$100</span>
+                    <span>${order.order?.data?.totalPrice}</span>
                 </div>
               
                 {/* Discount */}
                 <div className="flex justify-between pt-3 text-left">
                     <span>Discount</span>
-                    <span className="text-green-600 ">-$30</span>
+                    <span className="text-green-600 ">-${order.order?.data?.discount}</span>
                 </div>
                 {/* DELIVERY CHARGE */}
                 <div className="flex justify-between pt-3  text-left">
@@ -39,7 +59,7 @@ const OrderSummary = () => {
                 {/* SOMETHING */}
                 <div className="flex justify-between pt-3 text-left  font-bold">
                     <span>Total Amount</span>
-                    <span className="text-green-600"> $100</span>
+                    <span className="text-green-600"> ${order.order?.data?.totalDiscountedPrice}</span>
                 </div>
             </div>
             <Button

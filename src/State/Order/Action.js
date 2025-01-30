@@ -13,15 +13,13 @@ export const createOrder = (reqData) => async (dispatch) => {
     dispatch({ type: CREATE_ORDER_REQUEST });
 
     try {
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${reqData.jwt}`,
-            },
-        };
-        const { data } = await api.post(`api/orders/create`, reqData.address);
-        if(data.id){
-            reqData.navigate({search: `step=3&order_id=${data.id}`});
+        const requestBody = {
+            address: reqData.address
+        }
+  
+        const { data } = await api.post(`api/orders/create`, requestBody);
+        if(data.data?.id){
+            reqData.navigate({search: `step=3&order_id=${data.data?.id}`});
         }
         console.log("created order - ", data);
         dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });

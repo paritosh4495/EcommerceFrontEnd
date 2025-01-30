@@ -45,11 +45,11 @@ const CartItem = ({item}) => {
         <div className="ml-5 space-y-1 text-left ">
           <p className="font-semibold">{item?.title}</p>
           <p className="opacity-70">Size: {item?.size}, {item?.color}</p>
-          <p className="opacity-70 mt-2">Seller: {item.brand}</p>
+          <p className="opacity-70 mt-2">Seller: {item?.brand}</p>
             <div className="flex space-x-2 items-center text-gray-900 pt-6">
-                    <p className="font-semibold">${item.discountedPrice}</p>
-                    <p className="line-through opacity-50">${item.price}</p>
-                    <p className="text-green-600 font-semibold">{item.discountPercentage} % off</p>
+                    <p className="font-semibold">${item?.discountedPrice}</p>
+                    <p className="line-through opacity-50">${item?.price}</p>
+                    <p className="text-green-600 font-semibold">{item?.discountPercentage} % off</p>
             </div>
         </div>
       </div>
@@ -58,7 +58,7 @@ const CartItem = ({item}) => {
                 <IconButton onClick={handleDecreaseQuantity} >
                     <RemoveCircleOutlineIcon/>      
                 </IconButton>
-                <span className="py-1 px-7 border rounded-sm">{item.quantity}  </span>
+                <span className="py-1 px-7 border rounded-sm">{item?.quantity}  </span>
                 <IconButton sx={{color:"RGB(145 85 253)"}} onClick={handleIncreaseQuantity}>
                     <AddCircleOutlineIcon/>      
                 </IconButton>

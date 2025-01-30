@@ -1,8 +1,15 @@
 import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import React from "react";
 import AddressCard from "../AddressCard/AddressCard";
+import { useDispatch } from "react-redux";
+import { createOrder } from "../../../State/Order/Action";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryAddressFrom = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const handleSubmit = (e)=>
   {
@@ -19,6 +26,9 @@ const DeliveryAddressFrom = () => {
       mobile: data.get("phoneNumber"),
     };
     
+    const orderData = {address,navigate}
+    dispatch(createOrder(orderData))
+    
     console.log("address : ",address)
   }
   return (
@@ -31,7 +41,7 @@ const DeliveryAddressFrom = () => {
           className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll"
         >
           <div className="p-5 py-7 border-b cursor-pointer">
-            <AddressCard />
+            <AddressCard  />
             <Box display="flex" flexDirection="end">
                     <Button
                       sx={{ py: 1.5, mt: 2, bgcolor: "RGB(145 85 253)" }}

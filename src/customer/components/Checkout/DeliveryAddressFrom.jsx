@@ -1,15 +1,29 @@
-import { Box, Button, Grid, Stack, TextField } from "@mui/material";
-import React from "react";
+import { Box, Button, Divider, Grid, Stack, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import AddressCard from "../AddressCard/AddressCard";
 import { useDispatch } from "react-redux";
 import { createOrder } from "../../../State/Order/Action";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../../config/apiConfig";
 
 const DeliveryAddressFrom = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
+  useEffect(() => {
+    const fetchAddresses = async () => {
+      try {
+        const response = await api.get("api/address/get");
+        setAddresses(response.data.data);
+      } catch (error) {
+        console.error("Error fetching addresses:", error);
+      }
+    };
+    fetchAddresses();
+  }, []);
 
   const handleSubmit = (e)=>
   {
@@ -31,6 +45,16 @@ const DeliveryAddressFrom = () => {
     
     console.log("address : ",address)
   }
+
+
+  const handleDelivery = (address) => {
+    const orderData = { address, navigate };
+    dispatch(createOrder(orderData));
+    console.log("Selected Address:", address);
+  };
+
+
+  
   return (
     <div>
       <Grid container spacing={4}>
@@ -41,18 +65,28 @@ const DeliveryAddressFrom = () => {
           className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll"
         >
           <div className="p-5 py-7 border-b cursor-pointer">
-            <AddressCard  />
-            <Box display="flex" flexDirection="end">
-                    <Button
-                      sx={{ py: 1.5, mt: 2, bgcolor: "RGB(145 85 253)" }}
-                      size="large"
-                      variant="contained"
-                      type="submit"
-                      
-                    >
-                      Deliver Here
-                    </Button>
-                  </Box>
+          <>
+            {addresses.map((address,index)  => (
+              <Box key={address.id} mb={2}>
+                <AddressCard address={address} />
+                <Box display="flex" justifyContent="flex-end">
+                  <Button
+                    sx={{ py: 1.5, mt: 2, bgcolor: "RGB(145 85 253)" }}
+                    size="large"
+                    variant="contained"
+                    type="button"
+                    onClick={() => handleDelivery(address)}
+                  >
+                    Deliver Here
+                  </Button>
+                </Box>
+                 {/* Add Divider except after the last address */}
+              {index < addresses.length - 1 && (
+                <Divider sx={{ my: 2 }} />
+              )}
+              </Box>
+            ))}
+          </>
           </div>
         </Grid>
 

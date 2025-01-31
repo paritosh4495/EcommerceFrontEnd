@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getOrderById } from '../../../State/Order/Action'
 import { useLocation } from 'react-router-dom'
 import { store } from '../../../State/store'
+import OrderItem from '../Order/OrderItem'
+import { createPayment } from '../../../State/Payment/Action'
 
 
 
@@ -24,6 +26,11 @@ const OrderSummary = () => {
   },[orderId])
 
 
+  const handleCheckout = () =>{
+    dispatch(createPayment(orderId));
+  }
+
+
   return (
     <div>
         <div className='p-5 shadow-lg rounded-s-md border'>
@@ -32,7 +39,7 @@ const OrderSummary = () => {
         <div>
       <div className="lg:grid grid-cols-3 relative">
         <div className="col-span-2">
-          {order.order?.data?.orderItems.map((item)=> <CartItem  item={item}/>)}
+          {order.order?.data?.orderItems.map((item)=> <OrderItem  item={item}/>)}
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
           <div className="border text-left items-center p-5 shadow-lg rounded-md">
@@ -67,6 +74,7 @@ const OrderSummary = () => {
                   variant="contained"
                   fullWidth
                   sx={{ px: "2.5rem", py: "0.7rem" }}
+                  onClick={handleCheckout}
                 >
                   Checkout
                 </Button>

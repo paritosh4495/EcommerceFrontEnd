@@ -20,7 +20,7 @@ const API_BASE_URL = 'https://ecommercebackend-production-c7e5.up.railway.app/';
 export const register = (formData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
   try {
-    const response = await fetch(`${API_BASE_URL}users/register`, {
+    const response = await fetch(`${API_BASE_URL}api/users/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -41,7 +41,7 @@ export const register = (formData) => async (dispatch) => {
 export const login = (formData) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   try {
-    const response = await fetch(`${API_BASE_URL}auth/login`, {
+    const response = await fetch(`${API_BASE_URL}api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -69,7 +69,7 @@ export const getUser = () => async (dispatch) => {
     const token = localStorage.getItem('jwt');
     if (!token) throw new Error('No token found.');
 
-    const response = await fetch(`${API_BASE_URL}users/profile`, {
+    const response = await fetch(`${API_BASE_URL}api/users/profile`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

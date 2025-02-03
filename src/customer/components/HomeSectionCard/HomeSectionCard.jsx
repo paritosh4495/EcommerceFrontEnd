@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomeSectionCard = ({ product }) => {
+
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
     <div
+    onClick={handleCardClick}
       className="cursor-pointer flex flex-col bg-white rounded-lg shadow-lg 
     overflow-hidden w-[15rem] mx-3 border"
     >

@@ -40,6 +40,10 @@ export default function Navigation() {
 
 
 
+  const handleCartNavigation = () => {
+    navigate("/cart");
+  };
+
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -284,9 +288,13 @@ const handleLogout = () => {
               
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
-                    alt="Shopwithzosh"
-                    className="h-8 w-8 mr-2"
+                  
+                  src="https://static.vecteezy.com/system/resources/previews/024/824/191/non_2x/shopping-logo-e-commerce-logotype-shooping-website-purple-gradient-women-s-shopping-website-fast-shopping-e-store-website-application-template-business-company-online-shop-vector.jpg"
+                    alt="DhruvZON"
+                    className="h-10 w-20 mr-2"
+                    onClick={()=> navigate("/")}
+                    style={{cursor:'pointer'}}
+                  
                   />
                
               </div>
@@ -498,15 +506,18 @@ const handleLogout = () => {
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
                     className="group -m-2 flex items-center p-2"
+
+                    onClick={handleCartNavigation }
                   >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                     2
+                    {/* no. of items in the cart will come here !  */}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
+                    
                   </Button>
                 </div>
               </div>

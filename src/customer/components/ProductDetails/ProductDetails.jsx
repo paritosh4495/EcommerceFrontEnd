@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductById, findProductSById } from "../../../State/Product/Action";
 import { store } from "../../../State/store";
 import { addItemToCart } from "../../../State/Cart/Action";
+import { fetchProductsByCategory } from "../../Pages/HomePage/productService";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -86,11 +87,16 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
+
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
+
   const [selectedSize, setSelectedSize] = useState(" ");
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const {products} = useSelector(store => store);
+  
 
   console.log("Products INSIDE PRODUCT DETAILS-> ", products);
 
@@ -112,9 +118,40 @@ export default function ProductDetails() {
 
     // Fetch Product By Id
     console.log("Product ID : ", params.productId);
+    
     dispatch(findProductById({productId:params.productId}));
 
   },[params.productId])
+
+
+
+  useEffect(() => {
+
+    let isMounted = true;
+    const loadRelatedProducts = async () => {
+    
+      if (products.product?.thirdLevelCategory) {
+        try {
+          const data = await fetchProductsByCategory(products.product.thirdLevelCategory);
+          if (isMounted) {
+            setRelatedProducts(data); // Only set state if still mounted
+            console.log("Fetched Related Products: ", data);
+          }
+          console.log("Fetched Related Products: ", data);
+        } catch (error) {
+          if (isMounted) {
+            console.error("Error fetching related products:", error);
+          }
+        }
+      }
+    };
+  
+    loadRelatedProducts();
+    // Cleanup function to avoid state updates after unmount
+  return () => {
+    isMounted = false;
+  };
+  }, [products.product?.thirdLevelCategory]);
 
   return (
     <div className="bg-white lg:px-20">
@@ -472,7 +509,7 @@ export default function ProductDetails() {
               </h1>
 
               <div className="flex flex-wrap space-y-5">
-                {mens_kurta.map((item) => <HomeSectionCard product={item} />)}
+                {relatedProducts.map((item) => <HomeSectionCard key={item.id} product={item} />)}
               </div>
         </section>
       </div>

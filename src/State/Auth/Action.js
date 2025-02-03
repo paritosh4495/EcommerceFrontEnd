@@ -14,7 +14,7 @@ import {
 } from './ActionType'
 
 // Base API URL (adjust based on your setup)
-const API_BASE_URL = 'http://localhost:8080/api/';
+const API_BASE_URL = 'https://ecommercebackend-production-c7e5.up.railway.app/';
 
 // Action: Register a new user
 export const register = (formData) => async (dispatch) => {
